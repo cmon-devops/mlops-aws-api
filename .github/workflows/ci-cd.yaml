@@ -54,5 +54,6 @@ jobs:
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         AWS_REGION: 'us-east-2'
       run: |
-        zip -r ml-api.zip . 
+        zip -r ml-api.zip app.py train.py Dockerfile requirements.txt model.pkl
         aws lambda update-function-code --function-name ml-api --zip-file fileb://ml-api.zip --region $AWS_REGION
+
