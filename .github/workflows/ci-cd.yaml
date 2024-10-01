@@ -41,7 +41,7 @@ jobs:
       run: docker tag ml-api:latest 529088267622.dkr.ecr.us-east-2.amazonaws.com/ml-api:latest
 
     - name: Push Docker image to ECR
-      run: docker push 529088267622.dkr.ecr.us-east-1.amazonaws.com/ml-api:latest
+      run: docker push 529088267622.dkr.ecr.us-east-2.amazonaws.com/ml-api:latest
 
   deploy:
     runs-on: ubuntu-latest
@@ -52,7 +52,7 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        AWS_REGION: 'us-east-1'
+        AWS_REGION: 'us-east-2'
       run: |
         zip -r ml-api.zip . 
         aws lambda update-function-code --function-name ml-api --zip-file fileb://ml-api.zip --region $AWS_REGION
